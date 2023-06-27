@@ -1,0 +1,66 @@
+
+* {
+	line-height: normal;
+	box-sizing: border-box;
+}
+body {
+	padding: 1rem;
+	font: inherit;
+	font-family: "Akkurat Pro Regular", Arial, sans-serif;
+}
+
+h1 {
+	font-family: "Campton Book", Tahoma, sans-serif;
+	font-size: 50px;
+	font-weight: 700;
+}
+p {
+	font-size: 1rem;
+	max-width: 600px;
+}
+
+.labels-utm-outer, .textareas {
+	display: flex;
+	flex-wrap: wrap;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+label {
+	display: block;
+	font-weight: bold;
+	font-size: 24px;
+	margin-bottom: 2rem;
+	font-family: "Campton Book", Tahoma, sans-serif;
+	margin-right: 2rem;
+	flex-grow: 1;
+}
+
+input[type="text"] {
+	display: block;
+	padding: 0.5rem;
+	line-height: 1;
+	margin: 0.5rem 0;
+	width: 100%;
+	font-size: 1rem;
+}
+
+textarea {
+	border: 1px solid #ddd;
+	padding: 1rem;
+	display: block;
+	width: 100%;
+	margin: 0.5rem 0;
+	font-size: 1rem;
+	height: 400px;
+}
+textarea#output {
+	color: steelblue;
+}
+
+#campaign, #input {
+	border: 1px solid #cc0000;
+}
+
+.error, textarea#output.error {
+	color: red;
+}

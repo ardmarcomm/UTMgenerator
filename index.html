@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>UTM appender</title>
+
+	<script type="text/javascript" language="Javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="http://www.alumni.northwestern.edu/s/1479/02-naa/16/css/vendor.css">
+	<link rel="stylesheet" href="http://www.alumni.northwestern.edu/s/1479/02-naa/16/css/style.css">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>
+	UTM code generator
+</h1>
+<p>This is a tool to add UTM codes to any ARD links within a chunk of HTML. Its intended use is to format links within email newsletters, but it could be used for other purposes, too.</p>
+<p>
+The output HTML will update any time one of the other fields are updated. For email, you probably won't need to change medium or source, but the campaign should include the date and the name of the email.
+</p>
+<p>
+If unsure about which values to use for medium, source, and campaign, consult someone from the digital marketing team.
+</P>
+<p><strong>To use:</strong></p>
+<ol>
+<li>Designate a campaign name (and change source and medium, if necessary).
+<li>Paste HTML as input.
+<li>Copy the output text and paste it where needed.
+
+</oL>
+<div class="labels-utm-outer">
+	<label class="labels-utm">Medium<input type="text" id="medium" value="email"></label>
+	<label class="labels-utm">Source<input type="text" id="source" value="iModules email"></label>
+	<label class="labels-utm">Campaign<input type="text" id="campaign" placeholder="MM-DD-YYYY Purple Line"></label>
+</div>
+
+<div class="textareas">
+	<label>Input HTML
+	<textarea name="" id="input" cols="30" rows="10"></textarea>
+	</label>
+
+	<label>Output HTML
+	<textarea name="" id="output" cols="30" rows="10"></textarea>
+	</label>
+</div>
+
+<script>
+
+	var re = /[^"]*(?:alumni\.northwestern|secure\.ard\.northwestern|mentor\.northwestern|wewill\.northwestern|our\.northwestern|giving\.northwestern|catalyzer\.northwestern)[^"]*/gi;
+
+	$('input[type="text"], textarea#input').on('change keyup paste', function(){
+		var html = $('#input').val();
+		var source = encodeURIComponent($('#source').val());
+		var medium = encodeURIComponent($('#medium').val());
+		var campaign = encodeURIComponent($('#campaign').val());
+
+		if (source == '' || medium == '' || campaign == '') {
+			$('#output').addClass('error').html('Source, medium, and campaign are all required.');
+		}
+		else {
+			var output = html.replace(re, function(match){
+				if (match.indexOf('utm_medium') < 0) {
+					match = check_for_query(match);
+				}
+				match += match.indexOf('utm_medium') > -1 ? '' : `utm_medium=${medium}`;
+				match += match.indexOf('utm_source') > -1 ? '' : `&utm_source=${source}`;
+				match += match.indexOf('utm_campaign') > -1 ? '' : `&utm_campaign=${campaign}`;
+			
+				return match
+			});		
+
+			$('#output')
+				.removeClass('error')
+				.html(output)
+				.css('opacity',.4)
+				.animate({'opacity': 1, 'color':'#000000'}, 500);			
+		}
+	})
+ 
+	function check_for_query(url) {
+		return url.indexOf('?') > -1 ? url + '&' : url + '?';
+	}
+
+</script>
+
+</body>
+</html>
