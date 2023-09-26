@@ -28,7 +28,18 @@ If unsure about which values to use for medium, source, and campaign, consult so
 
 </oL>
 <div class="labels-utm-outer">
-	<label class="labels-utm">Medium<input type="text" id="medium" value="email"></label>
+	<label class="labels-utm">Medium
+		<!-- <input type="text" id="medium" value="email"> -->
+	<select id="medium"> 
+        <option value="Affiliates">Affiliates</option> 
+        <option value="Audio">Audio</option> 
+        <option value="Display">Display</option> 
+        <option value="Email">Email</option>
+	<option value="Mobile Push Notifications">Mobile Push Notifications</option> 
+        <option value="Organic Search">Organic Search</option> 
+        <option value="Organic Shopping">Organic Shopping</option> 
+        <option value="Paid Social">Paid Social</option>
+    </select></label>
 	<label class="labels-utm">Source<input type="text" id="source" value="iModules email"></label>
 	<label class="labels-utm">Campaign<input type="text" id="campaign" placeholder="MM-DD-YYYY Purple Line"></label>
 </div>
