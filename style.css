@@ -44,6 +44,15 @@ input[type="text"] {
 	font-size: 1rem;
 }
 
+select{
+	display: block;
+	padding: 0.5rem;
+	line-height: 1;
+	margin: 0.5rem 0;
+	width: 100%;
+	font-size: 1rem;
+}
+
 textarea {
 	border: 1px solid #ddd;
 	padding: 1rem;
